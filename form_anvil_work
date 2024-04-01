@@ -1,0 +1,48 @@
+from ._anvil_designer import Form1Template
+from anvil import *
+import anvil.server
+
+class Form1(Form1Template):
+  def __init__(self, **properties):
+    # Set Form properties and Data Bindings.
+    self.init_components(**properties)
+  def display_steps(self, steps):
+    
+    for i, step in enumerate(steps):
+      step_detail = ", ".join(map(str, step))
+      self.steps_textbox.text += f"Step {i+1}: {step_detail}\n"
+    # Any code you write here will run before the form opens.
+ 
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    data = self.text_box_input.text.strip().split(',')  # Nhận dữ liệu từ TextBox và tách thành list
+    try:
+        # Gọi hàm server để sắp xếp mảng
+        sorted_data = anvil.server.call('bubble_Sort_acs', data)
+        # Hiển thị kết quả trên TextBox
+        self.text_box_output.text = ','.join(sorted_data)
+        
+    except ValueError:
+        alert("Vui lòng nhập các số nguyên cách nhau bằng dấu phẩy.")
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    data = self.text_box_input.text.strip().split(',')  # Nhận dữ liệu từ TextBox và tách thành list
+    try:
+        # Gọi hàm server để sắp xếp mảng
+        sorted_data = anvil.server.call('bubble_Sort_desc', data)
+        # Hiển thị kết quả trên TextBox
+        self.text_box_output.text = ','.join(sorted_data)
+    except ValueError:
+        alert("Vui lòng nhập các số nguyên cách nhau bằng dấu phẩy.")
+
+ 
+
+  
+
+ 
+   
+    
+  
+
