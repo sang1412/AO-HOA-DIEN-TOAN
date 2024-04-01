@@ -1,0 +1,19 @@
+import anvil.server
+@anvil.server.callable
+def bubble_Sort_acs(arr):
+       arr = [int(x) for x in arr]  
+       n = len(arr)
+       for i in range(n):
+        for j in range(0, n-i-1):
+          if arr[j] > arr[j+1]:
+             arr[j], arr[j+1] = arr[j+1], arr[j]
+       return [str(x) for x in arr]
+@anvil.server.callable
+def bubble_Sort_desc(arr):
+       arr = [int(x) for x in arr]  # Chuyển đổi thành list số nguyên
+       n = len(arr)
+       for i in range(n):
+        for j in range(0, n-i-1):
+          if arr[j] < arr[j+1]:
+             arr[j], arr[j+1] = arr[j+1], arr[j]
+       return [str(x) for x in arr]  # Chuyển đổi lại thành list chuỗi
